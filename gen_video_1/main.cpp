@@ -72,7 +72,8 @@ int main(int argc, char * argv[]) {
 
 	FILE * pipe = popen(cmd, "w");
 	if (pipe == 0) {
-		cout << "err = " << strerror(errno) << endl;
+		cout << "error: " << strerror(errno) << endl;
+		return 1;
 	}
 
 	int num_frames = duration_in_seconds * frames_per_second;
