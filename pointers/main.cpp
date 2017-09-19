@@ -82,9 +82,13 @@ int main(int argc, char * argv[]) {
 	// crash only sometimes, so initialize pointers to zero when
 	// you have nothing else to assign to them.
 
-	//  For increased redability, use nullptr rather than 0.
+	// For increased readability, use nullptr rather than 0.
 	ptr = nullptr;
 	assert(nullptr == (void *) 0);
+	// Note that the compiler requires us to cast the zero to a 
+	// a pointer to some type or to void.  The following shows
+	// how to do this with an int pointer.
+	assert(nullptr == (int *) 0);
 
 	// Most computers these days store multi-byte numbers
 	// so that the least significant byte comes first.
