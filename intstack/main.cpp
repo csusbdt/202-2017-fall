@@ -21,6 +21,12 @@ private:
 	int n;         // number of elements in stack
 };
 
+Stack::Stack() {
+}
+
+Stack::~Stack() {
+}
+
 int main(int argc, char * args[]) {
 	Stack s;
 /*
