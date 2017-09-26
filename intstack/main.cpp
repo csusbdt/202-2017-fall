@@ -27,11 +27,20 @@ Stack::Stack() {
 Stack::~Stack() {
 }
 
+bool Stack::empty() const {
+	//if (n == 0) return true; else return false;
+	return n == 0;
+}
+
+int Stack::size() const {
+	return n;
+}
+
 int main(int argc, char * args[]) {
 	Stack s;
-/*
 	assert(s.empty());
 	assert(s.size() == 0);
+/*
 	s.push(1);
 	assert(not s.empty());
 	assert(s.size() == 1);
