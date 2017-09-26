@@ -54,7 +54,7 @@ int main(int argc, char * argv[]) {
 
 	// The following statement assigns the value 3 to x by
 	// using the "deference operator."
-	*ptr = 3;
+	*ptr = 3;  // Has the same effect as "x = 3;"
 
 	// Think about this way: 
 	// "ptr" represents the memory used to reference x and
