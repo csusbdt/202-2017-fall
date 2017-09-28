@@ -25,10 +25,10 @@ Stack::Stack() {
 }
 
 Stack::~Stack() {
+	delete [] data;
 }
 
 bool Stack::empty() const {
-	//if (n == 0) return true; else return false;
 	return n == 0;
 }
 
