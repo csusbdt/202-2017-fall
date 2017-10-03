@@ -9,9 +9,9 @@ public:
 	~Stack();
 	int size() const;
 	bool empty() const;
-	void push(int k);
-	void pop();
-	int & top();
+	void push(int k);  // add an element to the top
+	void pop();        // remove top element
+	int & top();       // access the top element
 
 private:
 	void ensureCapacity(int c);
@@ -21,11 +21,32 @@ private:
 	int n;         // number of elements in stack
 };
 
+// Optional constructor with initialization list.
+//Stack::Stack() : data(nullptr), capacity(0), n(0) {
+//}
+
 Stack::Stack() {
+	data = nullptr;
+	capacity = 0;
+	n = 0;
 }
 
 Stack::~Stack() {
-	delete [] data;
+	// The following if is not need because ok to delete nullptr.
+	//if (data != nullptr) {   
+		delete [] data;
+	//}
+}
+
+void Stack::ensureCapacity(int c) {
+	if (capacity >= c) return;
+	int * oldData = data;
+	data = new int[c];
+	for (int i = 0; i < n; ++i) {
+		data[i] = oldData[i];
+	}
+	delete [] oldData;
+	capacity = c;
 }
 
 bool Stack::empty() const {
@@ -36,31 +57,43 @@ int Stack::size() const {
 	return n;
 }
 
+void Stack::push(int k) {
+	ensureCapacity(n + 1);
+	data[n++] = k;
+}
+
+void Stack::pop() {
+	--n;
+}
+
+int & Stack::top() {
+	return data[n - 1];
+}
+
 int main(int argc, char * args[]) {
 	Stack s;
 	assert(s.empty());
 	assert(s.size() == 0);
-/*
-	s.push(1);
+	s.push(20);
 	assert(not s.empty());
 	assert(s.size() == 1);
-	assert(s.top() == 1);
+	assert(s.top() == 20);
 	s.pop();	
 	assert(s.empty());
 	assert(s.size() == 0);
 
-	s.push(1);
+	s.push(11);
 	assert(not s.empty());
 	assert(s.size() == 1);
-	assert(s.top() == 1);
-	s.push(2);
+	assert(s.top() == 11);
+	s.push(22);
 	assert(not s.empty());
 	assert(s.size() == 2);
-	assert(s.top() == 2);
+	assert(s.top() == 22);
 	s.pop();	
 	assert(not s.empty());
 	assert(s.size() == 1);
-	assert(s.top() == 1);
+	assert(s.top() == 11);
 	s.push(2);
 	assert(not s.empty());
 	assert(s.size() == 2);
@@ -69,7 +102,7 @@ int main(int argc, char * args[]) {
 	assert(not s.empty());
 	assert(s.size() == 3);
 	assert(s.top() == 3);
-*/
+
 	cout << "All tests passed." << endl;
 }
 
