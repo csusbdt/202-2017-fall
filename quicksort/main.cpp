@@ -5,7 +5,7 @@ using namespace std;
 
 // Sort values in range [s, e].
 void quicksort(int a[], int s, int e) {
-	// If there are less than 2 values to sort,
+	// If there are zero or one values to sort,
 	// then there is nothing to do.
 	if (e - s < 1) return;
 
@@ -15,7 +15,7 @@ void quicksort(int a[], int s, int e) {
 	// are located before pivot and values greater than
 	// pivot are after pivot.
 
-	// Scan range [a, e] from left to right; 
+	// Scan range [s, e] from left to right; 
 	// move elements less than pivot to front of range.
 
 	int i = s - 1; 
