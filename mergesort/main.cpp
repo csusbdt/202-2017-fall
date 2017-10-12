@@ -23,7 +23,6 @@ int main(int argc, char * args[]) {
 	for (int i = 0; i < 1000; ++i) a[i] = -50 + rand() % 100;
 	mergesort(a, 1000);
 	assert(sorted(a, 1000));
-/*
 
 	int b[1001];
 	for (int i = 0; i < 1001; ++i) b[i] = -50 + rand() % 100;
@@ -37,7 +36,7 @@ int main(int argc, char * args[]) {
 	int d[] = { 1, 2, 3, 4, 5 };
 	mergesort(d, 5);
 	assert(sorted(d, 5));
-*/
+
 	cout << "All tests passed." << endl;	
 }
 
