@@ -1,8 +1,23 @@
-/*
-This program generates a playable video file of simple animations 
-using the mpeg4 encoding.  It does this by writing raw video frames 
-into a running instance of ffmpeg. 
-*/
+/*! \mainpage gen_video.cpp
+ *
+ * This program generates a playable video file of simple animations 
+ * using the mpeg4 encoding.  It does this by writing raw video frames 
+ * into a running instance of ffmpeg. 
+ *
+ * This system uses the following coordinate system:
+ * ~~~~
+ *    (0, 0)               (w, 0)
+ *      +--------------------+
+ *      |                    |
+ *      |                    |
+ *      |                    |
+ *      +--------------------+
+ *    (0, h)               (w, h)
+ * ~~~~
+ *
+ * [course website](https://github.com/csusbdt/202-2017-fall/wiki)
+ *
+ */
 
 #include <iostream>
 #include <sstream>

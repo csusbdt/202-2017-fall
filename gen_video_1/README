@@ -1,0 +1,44 @@
+## Project Build Requirements
+
+To generate documentation, you need to install Doxygen.
+Here are my steps (on OS X).
+
+~~~
+curl -O http://ftp.stack.nl/pub/users/dimitri/Doxygen-1.8.13.dmg
+~~~
+
+Generate a configuration file for the project.
+
+~~~
+/Applications/Doxygen.app/Contents/Resources/doxygen -g
+~~~
+
+The above command generates a file named _Doxyfile_.
+Read through this file and make adjustments to the
+following variables.
+
+~~~
+PROJECT_NAME = gen_video
+GENERATE_LATEX = NO
+~~~
+
+To generate documentation, run doxygen with no arguments.
+
+~~~
+doxygen
+~~~
+
+This generates a folder named _html_ containing the documentation.
+The following is one way to open the documentation.
+
+~~~
+open -a "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" html/index.html
+~~~
+
+Alternatively, run _gendoc.sh_.
+
+~~~
+chmod +x gendoc.sh
+./gendoc.sh
+~~~
+
