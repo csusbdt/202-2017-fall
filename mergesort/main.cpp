@@ -3,6 +3,8 @@
 
 using namespace std;
 
+// a = the array of values to sort
+// x = a temporary array for merging 2 sorted sub-arrays
 // s = start of range to sort
 // e = end of range to sort
 void msort(int a[], int x[], int s, int e) {
