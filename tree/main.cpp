@@ -1,10 +1,25 @@
+/*! \mainpage 
+ *
+ *  This program illustrates the implementation of a binary
+ *  search tree.
+ *
+ *  The tree stores integer values that can be iterated across
+ *  from lowest to highest value.
+ *  This implementation is organized into three collaborating 
+ *  classes: Tree, Node, Iterator.
+ *  Tests are run from main.cpp 
+ *  \see main.cpp \see Tree \see Node \see Iterator
+ */
+
+/*! \file */
+
 #include <iostream>
 #include <cassert>
 
 #include "Tree.h"
 
 using namespace std;
-
+ 
 void test1() {
 	Tree t;
 	assert(t.size() == 0);
@@ -258,6 +273,7 @@ void test12() {
 	assert(it == t.end());
 }
 
+/*! The main function calls the test functions and then quits. */
 int main(int argc, char * arg[]) {
 	test1();	
 	test2();	

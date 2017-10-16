@@ -5,12 +5,19 @@
 
 using namespace std;
 
-void Tree::deleteSubtree(Node * n) {
-	if (n != nullptr) {
-		deleteSubtree(n->left);
-		deleteSubtree(n->right);
+// recursively delete all nodes.
+void Tree::deleteSubtree(Node * subtree) {
+	if (subtree != nullptr) {
+		deleteSubtree(subtree->left);
+		deleteSubtree(subtree->right);
 	}
-	delete n;
+	delete subtree;
+}
+
+// Recursively count the number of nodes in the tree.
+int Tree::countNodes(Node * subtree) const {
+	if (subtree == nullptr) return 0;
+	else return 1 + countNodes(subtree->left) + countNodes(subtree->right);
 }
 
 Tree::~Tree() {
@@ -26,11 +33,6 @@ Iterator Tree::begin() const {
 
 Iterator Tree::end() const { 
 	return Iterator(nullptr); 
-}
-
-int Tree::countNodes(Node * node) const {
-	if (node == nullptr) return 0;
-	else return 1 + countNodes(node->left) + countNodes(node->right);
 }
 
 int Tree::size() const {

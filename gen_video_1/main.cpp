@@ -32,7 +32,7 @@ using namespace std;
 #define W 720
 #define H 480
 
-const double frames_per_second = 30;
+const double frames_per_second = 30; 
 const int duration_in_seconds = 3;
 
 unsigned char frame[H][W][3];
@@ -40,6 +40,8 @@ unsigned char frame[H][W][3];
 void clear_frame() { memset(frame, 0, sizeof(frame)); }
 void draw_rect(int x, int y, int w, int h, byte r, byte g, byte b);
 
+// Main drawing code.
+// Expand this function to add content to the video.
 void draw_frame(double t) {
 	clear_frame();
 	const double pps = 80; // pixels per second
@@ -52,6 +54,8 @@ void clamp(int * x, int * y) {
 	if (*y < 0) *y = 0; else if (*y >= H) *y = H - 1;
 }
 
+// Draw a solid rectangle at given location, with given width and height
+// and with given RGB color value.
 void draw_rect(int x, int y, int w, int h, byte r, byte g, byte b) {
 	clamp(&x, &y);
 	int x0 = x;
@@ -70,6 +74,7 @@ void draw_rect(int x, int y, int w, int h, byte r, byte g, byte b) {
 }
 
 int main(int argc, char * argv[]) {
+	// Construct the ffmpeg command to run.
 	const char * cmd = 
 		"ffmpeg              "
 		"-y                  "
@@ -85,14 +90,15 @@ int main(int argc, char * argv[]) {
 		"-q:v 5              " // quality level; 1 <= q <= 32
 		"output.mp4          ";
 
+	// Run the ffmpeg command and get pipe to write into its standard input stream.
 	FILE * pipe = popen(cmd, "w");
 	if (pipe == 0) {
 		cout << "error: " << strerror(errno) << endl;
 		return 1;
 	}
 
+	// Write video frames into the pipe.
 	int num_frames = duration_in_seconds * frames_per_second;
-
 	for (int i = 0; i < num_frames; ++i) {
 		double time_in_seconds = i / frames_per_second;
 		draw_frame(time_in_seconds);

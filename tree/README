@@ -19,6 +19,7 @@ following variables.
 
 ~~~
 PROJECT_NAME = gen_video
+EXTRACT_PRIVATE = YES
 GENERATE_LATEX = NO
 ~~~
 
