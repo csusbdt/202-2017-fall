@@ -4,13 +4,13 @@
 
 class Iterator {
 public:
-	Iterator() {}
+	Iterator(Link * link) : link(link) {}
 	void operator++();
-	void operator--();
 	int & operator*();
 
 private:
 	Link * link;
 
+	friend class List;
 };
 

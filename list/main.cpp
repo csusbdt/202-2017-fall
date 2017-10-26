@@ -4,29 +4,55 @@
 
 using namespace std;
 
-int main() {
+void test1() {
 	List a;
 	assert(a.empty() == true);
-	a.push_back(17);
+	assert(a.size() == 0);
+
+	a.push_back(1);
 	assert(a.empty() == false);
-/*
-	a.push_front(3);
-	a.push_back(10);
-	assert(a.size() == 3);
-	list<int>::iterator it = a.begin();	
-	assert(*it == 3);
-	++it;
-	assert(*it == 17);
-	++it;
-	assert(*it == 10);
+	assert(a.size() == 1);
+
+	Iterator it = a.begin();
+	assert(*it == 1);
 	++it;
 	assert(it == a.end());
 
 	it = a.begin();
+	a.insert(it, 0);
+	it = a.begin();
+	assert(*it == 0);
+	++it;
+	assert(*it == 1);
+	++it;
+	assert(it == a.end());
+}
+
+test2() {
+	List a;
+	a.push_back(1);
+	a.push_back(2);
+	a.push_back(4);
+	Iterator it = a.begin();
+	++it;
+	++it;
+	assert(*it == 4);
+	a.insert(it, 3);
+	it = a.begin();
+	assert(*it == 1);
+	++it;
+	assert(*it == 2);
+	++it;
 	assert(*it == 3);
-	*it += 1;
-	cout << *it << endl;
-*/
+	++it;
+	assert(*it == 4);
+	++it;
+	assert(it == a.end());
+}
+
+int main() {
+	test1();
+
 	cout << "All tests passed." << endl;
 }
 

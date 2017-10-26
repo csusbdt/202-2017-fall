@@ -2,9 +2,14 @@
 
 class Link {
 public:
-	Link() {}
+	Link(int value, Link * next = nullptr)
+	: value(value), next(next) {}
 
 private:
+	Link * next;
+	int value;
 
+	friend class List;
+	friend class Iterator;
 };
 
