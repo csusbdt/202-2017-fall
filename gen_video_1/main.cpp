@@ -24,6 +24,7 @@
 #include <sys/stat.h>
 #include <stdio.h>
 #include <cassert>
+#include <cstring>
 
 typedef unsigned char byte;
 
