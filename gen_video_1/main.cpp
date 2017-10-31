@@ -54,10 +54,14 @@ void clamp(int * x, int * y) {
 	if (*y < 0) *y = 0; else if (*y >= H) *y = H - 1;
 }
 
+bool outside_frame(int * x, int * y) {
+	return *x < 0 or *x >= W or *y < 0 or *y >= H;
+}
+
 // Draw a solid rectangle at given location, with given width and height
 // and with given RGB color value.
 void draw_rect(int x, int y, int w, int h, byte r, byte g, byte b) {
-	clamp(&x, &y);
+	if (outside_frame(&x, &y)) return;
 	int x0 = x;
 	int x1 = x + w;
 	int y0 = y;
