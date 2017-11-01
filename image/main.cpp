@@ -24,7 +24,8 @@ int main(int argc, char * argv[]) {
 		return 1;
 	}
 
-	SDL_Renderer * renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+	int flags = SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC;
+	SDL_Renderer * renderer = SDL_CreateRenderer(window, -1, flags);
 
 	Image image(renderer);
 	image.scale = .5;
@@ -52,7 +53,6 @@ int main(int argc, char * argv[]) {
 			previous_millis = millis;
 		}
 	}
-
 
 	SDL_Quit();
 
