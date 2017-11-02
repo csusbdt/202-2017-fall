@@ -4,7 +4,7 @@
 
     Use the following to build (under OS X).
 
-        c++ `sdl2-config --libs --cflags` -I /usr/local/include *.cpp
+        c++ `sdl2-config --libs --cflags` *.cpp
 */
 
 #include <iostream>
@@ -23,7 +23,7 @@ int main(int argc, char * argv[]) {
 		640, 
 		480, 
 		0);
-	if (!window) {
+	if (window == nullptr) {
 		std::cout << "SDL Error: " << SDL_GetError() << std::endl;
 		SDL_Quit();
 		return 1;
@@ -56,9 +56,5 @@ int main(int argc, char * argv[]) {
 			previous_millis = millis;
 		}
 	}
-
-	SDL_Quit();
-
-	std::cout << "OK" << std::endl;
 }
 
