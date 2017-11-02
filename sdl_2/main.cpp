@@ -1,9 +1,15 @@
+/*
+    This program illustrates how to start an SDL project.
+    It simply renders a rectangle in the center of the screen.
+
+    Use the following to build (under OS X).
+
+        c++ `sdl2-config --libs --cflags` *.cpp
+*/
+
 #include <iostream>
 #include "SDL.h"
-#include "Image.h"
-
-const int screenWidth  = 640;
-const int screenHeight = 480;
+#include "Rectangle.h"
 
 int main(int argc, char * argv[]) {
 	if (SDL_Init(SDL_INIT_VIDEO) != 0) {
@@ -15,10 +21,10 @@ int main(int argc, char * argv[]) {
 		"CSE 202", 
 		SDL_WINDOWPOS_UNDEFINED, 
 		SDL_WINDOWPOS_UNDEFINED, 
-		screenWidth, 
-		screenHeight, 
+		640, 
+		480, 
 		0);
-	if (!window) {
+	if (window == nullptr) {
 		std::cout << "SDL Error: " << SDL_GetError() << std::endl;
 		SDL_Quit();
 		return 1;
@@ -27,11 +33,9 @@ int main(int argc, char * argv[]) {
 	int flags = SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC;
 	SDL_Renderer * renderer = SDL_CreateRenderer(window, -1, flags);
 
-	Image image(renderer);
-	image.scale = .5;
-	image.x = -image.getWidth() * image.scale;
-	image.y = 100;
-	image.load("ducky.bmp");
+	Rectangle rect(renderer, 162, 100, -162, -100);
+	rect.setVelocity(50, 30);
+	rect.setColor(128, 100, 45);
 
 	Uint32 previous_millis = SDL_GetTicks();
 	while (true) {
@@ -44,18 +48,16 @@ int main(int argc, char * argv[]) {
 		}
 		Uint32 millis = SDL_GetTicks();
 		double dt =  (millis - previous_millis) / 1000.0;
-		if (dt > 1.0 / 30) {
+		if (dt > 1.0 / 60) {
+			SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 			SDL_RenderClear(renderer);
-			image.x += dt * 100;
-			if (image.x > screenWidth) image.x = -image.getWidth() * image.scale;
-			image.draw();
+
+			rect.update(dt);
+			rect.draw();
+
 			SDL_RenderPresent(renderer);
 			previous_millis = millis;
 		}
 	}
-
-	SDL_Quit();
-
-	std::cout << "OK" << std::endl;
 }
 
