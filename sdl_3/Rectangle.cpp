@@ -6,11 +6,6 @@ Rectangle::Rectangle(double w, double h, double x, double y)
 : w(w), h(h), x(x), y(y), dx(0), dy(0), red(255), green(255), blue(255) {
 }
 
-void Rectangle::setXY(double x, double y) {
-	this->x = x;
-	this->y = y;
-}
-
 void Rectangle::setVelocity(double dx, double dy) {
 	this->dx = dx;
 	this->dy = dy;
