@@ -9,6 +9,10 @@
 
 #include <iostream>
 #include "SDL.h"
+#include "Engine.h"
+#include "StartObject.h"
+
+SDL_Renderer * renderer = nullptr;
 
 int main(int argc, char * argv[]) {
 	if (SDL_Init(SDL_INIT_VIDEO) != 0) {
@@ -30,36 +34,15 @@ int main(int argc, char * argv[]) {
 	}
 
 	int flags = SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC;
-	SDL_Renderer * renderer = SDL_CreateRenderer(window, -1, flags);
+	renderer = SDL_CreateRenderer(window, -1, flags);
 	if (renderer == nullptr) {
 		std::cout << "SDL Error: " << SDL_GetError() << std::endl;
 		SDL_Quit();
 		return 1;
 	}
 
-	SDL_Rect rect;
-	rect.w = 162;
-	rect.h = 100;
-	rect.x = (640 - rect.w) / 2;
-	rect.y = (480 - rect.h) / 2;
-
-	Uint32 previous_millis = SDL_GetTicks();
-	while (true) {
-		SDL_Event e;
-		while (SDL_PollEvent(&e)) {
-			if (e.type == SDL_QUIT) {
-				SDL_Quit();
-				return 0;
-			}
-		}
-		Uint32 millis = SDL_GetTicks();
-		double dt =  (millis - previous_millis) / 1000.0;
-		if (dt > 1.0 / 60) {
-			SDL_RenderClear(renderer);
-			SDL_RenderFillRect(renderer, &rect);
-			SDL_RenderPresent(renderer);
-			previous_millis = millis;
-		}
-	}
+	StartObject startObject;
+	Engine::addObject(&startObject);
+	return Engine::run();
 }
 
