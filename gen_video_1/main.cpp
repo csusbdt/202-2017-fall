@@ -56,7 +56,7 @@ void clamp(int * x, int * y) {
 }
 
 bool outside_frame(int * x, int * y) {
-	return *x < 0 or *x >= W or *y < 0 or *y >= H;
+	return *x < 0 || *x >= W || *y < 0 || *y >= H;
 }
 
 // Draw a solid rectangle at given location, with given width and height
@@ -115,7 +115,11 @@ int main(int argc, char * argv[]) {
 	}
 
 	fflush(pipe);
+#ifdef _WIN32
+	_pclose(pipe);
+#else
 	pclose(pipe);
+#endif
 
 	cout << "num_frames: " << num_frames << endl;
 	cout << "Done." << endl;
