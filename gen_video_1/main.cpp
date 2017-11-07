@@ -96,7 +96,11 @@ int main(int argc, char * argv[]) {
 		"output.mp4          ";
 
 	// Run the ffmpeg command and get pipe to write into its standard input stream.
+#ifdef _WIN32
+	FILE * pipe = _popen(cmd, "wb");
+#else
 	FILE * pipe = popen(cmd, "w");
+#endif
 	if (pipe == 0) {
 		cout << "error: " << strerror(errno) << endl;
 		return 1;
