@@ -10,6 +10,8 @@ public:
 	virtual void update(double dt);
 	virtual void draw() const;
 
+	double getH() { return h; }
+	double getW() { return w; }
 	double getX() { return x; }
 	double getY() { return y; }
 	void setX(double x) { this->x = x; }
