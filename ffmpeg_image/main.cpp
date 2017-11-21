@@ -67,7 +67,7 @@ int main(int argc, char * argv[]) {
 	}
 
 	Image image;
-	image.load("ducky.bmp", 500, 546);
+	image.load("ducky.bmp", 100, 100);
 
 	int num_frames = duration_in_seconds * frames_per_second;
 	for (int i = 0; i < num_frames; ++i) {
