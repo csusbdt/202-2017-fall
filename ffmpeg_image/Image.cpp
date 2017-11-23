@@ -2,6 +2,7 @@
 #include <cstring>
 #include <iostream>
 #include <cerrno>
+#include <sstream>
 #include "Image.h"
 #include "Frame.h"
 
@@ -12,17 +13,18 @@ void Image::load(const char * filename, int w, int h) {
 	this->h = h;
 	pixels = new byte[w * h * 3];
 
-	const char * cmd = 
-		"ffmpeg            "
-		"-i ducky.bmp      "
-		"-f rawvideo       "
-		"-pix_fmt rgb24    "
-		"-vf scale=100x100 "
-		"-                 ";
+	std::stringstream ss;
+	ss << "ffmpeg ";
+	ss << "-i " << filename << " ";
+	ss << "-f rawvideo ";
+	ss << "-pix_fmt rgb24 ";
+	ss << "-vf scale=" << w << "x" << h << " ";
+	ss << "-";
+
 #ifdef _WIN32
-	FILE * pipe = _popen(cmd, "rb");
+	FILE * pipe = _popen(ss.str().c_str(), "rb");
 #else
-	FILE * pipe = popen(cmd, "r");
+	FILE * pipe = popen(ss.str().c_str(), "r");
 #endif
 	if (pipe == 0) {
 		std::cout << "error: " << strerror(errno) << std::endl;
