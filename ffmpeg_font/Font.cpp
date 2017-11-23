@@ -46,7 +46,6 @@ void Font::draw(const string & text, double x, double y) const {
 	}
 */
 
-/*
 	int fx = 160;
 	int fy = 56;
 	int fw = 36;
@@ -59,6 +58,5 @@ void Font::draw(const string & text, double x, double y) const {
 			frame.setPixel(x + i, y + j, r, g, b);
 		}
 	}
-*/
 }
 
