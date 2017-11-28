@@ -4,6 +4,7 @@
 #include <cerrno>
 #include "Font.h"
 #include "Frame.h"
+#include "Glyph.h"
 
 using namespace std;
 
@@ -39,24 +40,23 @@ Font::Font() : w(384), h(384) {
 }
 
 void Font::draw(const string & text, double x, double y) const {
-/*
 	for (int i = 0; i < text.size(); ++i) {
-		char c = text[i];
-		glyphs[c].draw(x, y);
-	}
-*/
-
-	int fx = 160;
-	int fy = 56;
-	int fw = 36;
-	int fh = 40;
-	for (int i = fx; i < fx + fw; ++i) {
-		for (int j = fy; j < fy + fh; ++j) {
-			byte r = pixels[j * w * 3 + i * 3 + 0];
-			byte g = pixels[j * w * 3 + i * 3 + 1];
-			byte b = pixels[j * w * 3 + i * 3 + 2];
-			frame.setPixel(x + i, y + j, r, g, b);
+		Glyph g(text[i]);
+		for (int i = 0; i < g.fw; ++i) {
+			for (int j = 0; j < g.fh; ++j) {
+				byte red   = pixels[(g.fy + j) * w * 3 + (g.fx + i) * 3 + 0];
+				byte green = pixels[(g.fy + j) * w * 3 + (g.fx + i) * 3 + 1];
+				byte blue  = pixels[(g.fy + j) * w * 3 + (g.fx + i) * 3 + 2];
+				frame.setPixel(
+					x + g.xOffset + i, 
+					y + g.yOffset + j, 
+					red, 
+					green, 
+					blue
+				);
+			}
 		}
+		x += g.xAdvance;
 	}
 }
 

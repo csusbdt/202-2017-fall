@@ -1,5 +1,7 @@
 #pragma once
 
+#include <stdio.h>
+
 typedef unsigned char byte;
 
 class Frame {

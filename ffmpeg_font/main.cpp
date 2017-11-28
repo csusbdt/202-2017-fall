@@ -13,7 +13,7 @@ typedef unsigned char byte;
 using namespace std;
 
 const double frames_per_second = 30; 
-const int duration_in_seconds = 3;
+const int duration_in_seconds = 4;
 
 Frame frame(720, 480);
 
@@ -50,7 +50,13 @@ int main(int argc, char * argv[]) {
 	int num_frames = duration_in_seconds * frames_per_second;
 	for (int i = 0; i < num_frames; ++i) {
 		frame.clear();
-		font.draw("Apple", 50, 30);
+
+		// Convert elapsed seconds to a string.
+		stringstream elapsedSeconds;
+		elapsedSeconds << (int) (i / frames_per_second);
+
+		font.draw(elapsedSeconds.str(), 50, 30);
+
 		frame.write(pipe);
 	}
 
