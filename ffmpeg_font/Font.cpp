@@ -47,12 +47,13 @@ void Font::draw(const string & text, double x, double y) const {
 				byte red   = pixels[(g.fy + j) * w * 3 + (g.fx + i) * 3 + 0];
 				byte green = pixels[(g.fy + j) * w * 3 + (g.fx + i) * 3 + 1];
 				byte blue  = pixels[(g.fy + j) * w * 3 + (g.fx + i) * 3 + 2];
-				frame.setPixel(
+				frame.blendPixel(
 					x + g.xOffset + i, 
 					y + g.yOffset + j, 
 					red, 
 					green, 
-					blue
+					blue,
+					128
 				);
 			}
 		}
