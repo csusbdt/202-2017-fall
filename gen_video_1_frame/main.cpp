@@ -31,7 +31,7 @@
 using namespace std;
 
 const double frames_per_second = 30; 
-const int duration_in_seconds = 3;
+const int duration_in_seconds = 9;
 
 static Frame frame;
 
@@ -45,22 +45,13 @@ void draw_frame(double t) {
 	draw_rect(0 + t * pps, 0 + t * pps, 20, 10, 0x00, 0xff, 0x00);
 }
 
-// Constrain point to frame.
-void clamp(int * x, int * y) {
-	if (*x < 0) *x = 0; else if (*x >= W) *x = W - 1;
-	if (*y < 0) *y = 0; else if (*y >= H) *y = H - 1;
-}
-
 // Draw a solid rectangle at given location, with given width and height
 // and with given RGB color value.
 void draw_rect(int x, int y, int w, int h, byte r, byte g, byte b) {
-	if (frame.isOutside(&x, &y)) return;
 	int x0 = x;
 	int x1 = x + w;
 	int y0 = y;
 	int y1 = y + h;
-	clamp(&x0, &y0);
-	clamp(&x1, &y1);
 	for (int y = y0; y < y1; ++y) {
 		for (int x = x0; x < x1; ++x) {
 			frame.setPixel(x, y, r, g, b);
